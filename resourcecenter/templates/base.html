@@ -1,0 +1,207 @@
+{% load static %}
+{% load rc_template_tags %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>{% block title %}Resource Center{% endblock title %}</title>
+	<meta charset="utf-8" />
+	<meta name="description"
+		content="{% block description %}Resource Center, a free open Courseware powered by ICJCF for every FUNAAB student.	Explore, Share and Store Academic Resources Easily.{% endblock description %}">
+
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://resourcecenter.com.ng/">
+	<meta property="og:site_name" content="ResourceCenter">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	<noscript>
+		<link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	<link rel="manifest" href="{% static 'icons/webicons/site.webmanifest' %}">
+	<link rel="shortcut icon" href="{% static 'icons/webicons/favicon.ico' %}" type="image/x-icon">
+	<link rel="apple-touch-icon" href="{% static 'icons/webicons/apple-touch-icon.png' %}">
+	<style>
+		@media screen and (max-width: 736px) {
+			.is-preload .wrapper #intro {
+				min-height: 50vh
+			}
+		}
+	</style>
+	{% block extra_head %}
+	{% endblock extra_head %}
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0HKZMYBTL"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-N0HKZMYBTL');
+	</script>
+	<script type='text/javascript'
+		src='//pl17233998.safestgatetocontent.com/b5/06/5d/b5065d8f98c1fa789de0afd29004d7cb.js'>
+	</script>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
+		<div class="col-sm-12">
+			{% if messages %}
+			{% for message in messages %}
+			<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}
+                     alert-dismissible fade show" role="alert">
+				<span
+					class="badge badge-pill badge-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}">{{message.tags}}</span>{{message}}
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+		{% block intro %}
+
+		{% endblock intro %}
+		<!-- Header -->
+		<header id="header">
+			<a href="{% url 'resourcecenter:home' %}" class="logo">Resource Center</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="{% url 'resourcecenter:home' %}">Resource Center</a></li>
+				{% if request.user.is_authenticated %}
+				{{request.user|downloadlist_shortcut|safe}}
+				{% endif %}
+				<li id="upload-nav"><a href="{% url 'resourcecenter:upload' %}">Upload File(s)</a></li>
+				{% if request.user.is_authenticated %}
+				<li><a href="{% url 'resourcecenter:my_account' %}">My Account</a></li>
+				{% else %}
+				<li><a href="{% url 'account_login' %}">Sign in</a></li>
+				<li><a href="{% url 'account_signup' %}">Sign up</a></li>
+				{% endif %}
+				<li><a href="{% url 'resourcecenter:statistics' %}">Statistics</a></li>
+
+			</ul>
+			<ul class="icons">
+				<li><a href="https://twitter.com/icjcf_funaab" target="blank_" title="@icjcf_funaab"
+						class="icon brands fa-twitter"><span class="label">Twitter</span></a>
+				</li>
+				<li><a href="https://fb.me/icjcffunaab" target="blank_" title="@icjcfFunaab"
+						class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.instagram.com/icjcf_funaab" target="blank_" title="@icjcf_funaab"
+						class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+			{% block content %}
+			{% endblock content %}
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<section>
+				<form method="post" action="{% url 'resourcecenter:message' %}">
+					{% csrf_token %}
+					<div class="fields">
+						<div class="field">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" />
+						</div>
+						<div class="field">
+							<label for="email">Email</label>
+							<input type="text" name="email" id="email" />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="3" required></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input class="button primary" type="submit" value="Send Message" /></li>
+					</ul>
+				</form>
+			</section>
+			<section class="split contact">
+				<section class="alt">
+					<h3>Address</h3>
+					<p>Federal University of Agriculture,<br />
+						Abeokuta.</p>
+				</section>
+				<section>
+					<h3>Phone</h3>
+					<p><a href="#">0817 910 8512</a></p>
+				</section>
+				<section>
+					<h3>Email</h3>
+					<p><a href="#">icjcf_unaab@yahoo.com</a></p>
+				</section>
+				<section>
+					<h3>Social</h3>
+					<ul class="icons alt">
+						<li><a href="https://twitter.com/icjcf_funaab" target="blank_" title="@icjcf_funaab"
+								class="icon brands alt fa-twitter"><span class="label">Twitter</span></a>
+						</li>
+						<li><a href="https://fb.me/icjcffunaab" target="blank_" title="@icjcfFunaab"
+								class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="https://www.instagram.com/icjcf_funaab" target="blank_" title="@icjcf_funaab"
+								class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					</ul>
+				</section>
+			</section>
+		</footer>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Resource Center</li>
+				<li>Powered by: <a href="#" class="scrolly">ICJCF</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+	<script src="{% static 'assets/js/browser.min.js' %}"></script>
+	<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+	<script src="{% static 'assets/js/util.js' %}"></script>
+	<script src="{% static 'assets/js/main.js' %}"></script>
+
+	<script>
+		if (document.location.pathname == "/resourcecenter/upload") {
+			document.getElementById("upload-nav").classList.add("active")
+		}
+	</script>
+	<script>
+		$("document").ready(function () {
+			setTimeout(function () {
+				$(".alert").fadeOut()
+			}, 5000)
+
+		})
+	</script>
+	<script>
+		$(document).ready(function () {
+			let url = "{% url 'resourcecenter:traffic' %}"
+			let request = new XMLHttpRequest();
+			request.open("GET", url);
+			request.send()
+		})
+	</script>
+	{% block extra_scripts %}
+	{% endblock extra_scripts %}
+
+</body>
+
+</html>
