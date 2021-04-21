@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rc_template_tags %}
+
+
+{% block title %}
+[download] {{object.file_name|clean_title}}
+{% endblock title %}
+
+{% block description %}
+Download {{object.file_name|clean_title}} for ICJCF Powered Funaab Resource Center for Free
+{% endblock description %}
+
+
+{% block extra_head %}
+<style>
+    #subtable {
+        background-color: rgba(220, 220, 220, 0.25);
+    }
+
+    #voting button {
+        box-shadow: none;
+        padding: 0;
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border-bottom: dotted 1px;
+        text-decoration: none;
+        height: 40px;
+    }
+
+    #voting {
+        display: inline-block;
+    }
+
+    table tbody tr td span #title {
+        text-transform: capitalize;
+    }
+
+    @media screen and (max-width: 576px) {
+        #box {
+            padding: 0
+        }
+    }
+
+    table tr td {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<div class="box" id="box">
+    <table cellspacing="0" cellpadding="0" class="subtable" id="subtable" style="padding:5px;">
+        <tbody id="tbody">
+            <tr>
+                <td colspan="3"><span><img style="margin-right: 10px"
+                            src="{{object.file_extension|get_extension_image}}" width="20px"
+                            height="20px" /></span><span>
+                        <h2 id="title" style="display: inline-block;">Download "{{object.file_name|clean_title}}"</h2>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td width="10">
+                    <i class="ti-notepad"></i>
+                </td>
+                <td><b>Filename:</b></td>
+                <td width="70%" style="text-overflow: clip;">{{object.file_name|clean_title}}</td>
+            </tr>
+            <tr>
+                <td width="10">
+                    <i class="ti-write"></i>
+                </td>
+                <td><b>File extension:</b></td>
+                <td width="70%" style="text-transform: uppercase;">{{object.file_extension}}</td>
+            </tr>
+            <tr>
+                <td width="10">
+                    <i class="ti-file"></i>
+                </td>
+                <td><b>File type:</b></td>
+                <td width="70%">{{object.get_file_type}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="ti-harddrive"></i>
+                </td>
+                <td>
+                    <nobr><b>Size:</b></nobr>
+                </td>
+                <td>{{object.clean_size}}</td>
+            </tr>
+            <tr>
+                <td width="25">
+                    <i class="ti-home"></i>
+                </td>
+                <td><b>Department:</b></td>
+                <td width="70%">{{object.department}}</td>
+            </tr>
+            <tr>
+                <td width="25">
+                    <i class="ti-bar-chart-alt"></i>
+                </td>
+                <td><b>Level:</b></td>
+                <td width="70%">{{object.level}}</td>
+            </tr>
+            <tr>
+                <td width="25">
+                    <i class="ti-pencil-alt"></i>
+                </td>
+                <td><b>Semester:</b></td>
+                <td width="70%">{{object.get_semester}}</td>
+            </tr>
+            <tr>
+                <td width="25">
+                    <i class="ti-envelope"></i>
+                </td>
+                <td><b>Course Code:</b></td>
+                <td width="70%">{{object.courseCode}}</td>
+            </tr>
+            <tr>
+                <td width="25">
+                    <i class="ti-agenda"></i>
+                </td>
+                <td><b>Description:</b></td>
+                <td width="70%" style="text-transform: capitalize;">{{object.description}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="ti-id-badge"></i>
+                </td>
+                <td><b>Uploaded by:</b></td>
+                <td>
+                    {% if object.uploader != "AnonymousUser" %}
+                    <a href="{% url 'resourcecenter:profile' object.uploader %}">{{object.uploader}}</a>
+                    <p class="d-inline ml-2" style="font-weight: 600;">{{object.uploader|get_knowledge_point}}</p>
+                    {% else %}
+                    Anonymous
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="ti-time"></i>
+                </td>
+                <td><b>Date:</b></td>
+                <td>{{object.date}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="ti-import"></i>
+                </td>
+                <td>
+                    <nobr><b>Downloads:&nbsp;&nbsp;</b></nobr>
+                </td>
+                <td>{{object.downloads}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="ti-flag"></i>
+                </td>
+                <td>
+                    <nobr><b>
+                            <noindex><a href="{{object.report_url}}" rel="nofollow">Report bad</a>
+                            </noindex>
+                        </b></nobr>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            {% if request.user.is_authenticated %}
+            {% if request.user|is_resourcecenter_admin or request.user.username == object.uploader %}
+            <tr>
+                <td>
+                    <i class="ti-trash"></i>
+                </td>
+                <td>
+                    <nobr><b>
+                            <noindex><a href="{{object.delete_url}}" rel="nofollow">Delete File</a>
+                            </noindex>
+                        </b></nobr>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            {% endif %}
+            {% endif %}
+            <tr>
+                <td colspan="3" align="center">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td align="left" width="100"><b id="hate"
+                                        style="color:red; font-size:14px; margin:0 30px 0 0; ">Downvotes</b></td>
+                                <td><b id="hate" style="font-size:14px;">Rate</b></td>
+                                <td align="right" width="100"><b id="love"
+                                        style="color:green; font-size:14px;  margin:0 0 0 0px; width:50%">Upvotes</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <form id="voting" action="{{object.downvote_url}}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" name="downvote">
+                                            <i class="ti-thumb-down"></i>
+                                        </button></form>
+                                    <b id="hate"
+                                        style="color:red; font-size:14px; margin:0 30px 0 0;">{{object.downvotes}}</b>
+                                </td>
+                                <td></td>
+                                <td align="right">
+                                    <b id="love"
+                                        style="color:green; font-size:14px;  margin:0 0 0 30px;">{{object.upvotes}}</b>
+                                    <form id="voting" action="{{object.upvote_url}}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" name="upvote">
+                                            <i class="ti-thumb-up"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <button class="primary" type="submit" name="download">Download</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
+
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}
