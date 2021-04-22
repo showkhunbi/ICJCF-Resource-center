@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rc_template_tags %}
+
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block title %}{{department}}{{level}}{% endblock title %}
+
+
+{% block description %}
+Download {{department}}{{level}} materials for free on ICJCF powered resource center for free
+{% endblock description %}
+
+{% block content %}
+{% if object_list %}
+<div class="table-wrapper">
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Filename</th>
+                <th><i class="ti-download"></i></th>
+                <th><i class="ti-thumb-up"></i></th>
+                <th><i class="ti-thumb-down"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{{object.get_download_url}}">{{object.file_name|clean_title}}</a></td>
+                <td>{{object.downloads}}</td>
+                <td>{{object.upvotes}}</td>
+                <td>{{object.downvotes}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<section class="post pt-3">
+    <header class="major mb-3">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            Sorry, No File Found
+        </span>
+    </header>
+    <a class="button primary col-12 mb-5" href="{% url 'resourcecenter:upload' %}">Be the First to Contribute</a>
+    <div class="mb-5"></div>
+</section>
+{% endif %}
+{% endblock content %}
+
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}
