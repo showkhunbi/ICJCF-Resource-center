@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rc_template_tags %}
+{% load i18n %}
+
+{% block extra_head %}
+
+{% endblock extra_head %}
+
+{% block title %}My Account{% endblock title %}
+
+{% block content %}
+<section class="post pt-3">
+    <header class="major mb-3">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            User Profile
+        </span>
+    </header>
+    <div>
+        <table id="user_profile">
+            <tbody>
+                <tr>
+                    <td style="font-weight: 600">Name</td>
+                    <td>{{student.name}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600">Department</td>
+                    <td>{{student.department.name}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600">Knowledge Points</td>
+                    <td>{{student.knowledge_points}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% if student.files.all %}
+    <header class="major mb-3">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            Files
+        </span>
+    </header>
+    <div class="table-wrapper">
+        <table class="alt">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Filename</th>
+                    <th><i class="ti-download"></i></th>
+                    <th><i class="ti-thumb-up"></i></th>
+                    <th><i class="ti-thumb-down"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in student.files.all %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><a href="{{object.get_download_url}}">{{object.file.name|clean_title}}</a></td>
+                    <td>{{object.downloads}}</td>
+                    <td>{{object.upvotes}}</td>
+                    <td>{{object.downvotes}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <header class="major mb-3">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            Update Profile
+        </span>
+    </header>
+    <div class="">
+        <form class="signup" id="signup_form" method="post" action="">
+            {% csrf_token %}
+
+            <div class="row">
+                {{form.first_name.errors}}
+                <div class="form-group col-6">
+                    <label>First name</label>
+                    <input type="text" class="form-control" placeholder="First Name" id="id_first_name"
+                        name="first_name" value="{{student.first_name}}" autocomplete="new-password">
+                </div>
+                {{form.last_name.errors}}
+                <div class="form-group col-6">
+                    <label>Last name</label>
+                    <input type="text" class="form-control" placeholder="First Name" id="id_last_name" name="last_name"
+                        value="{{student.last_name}}" autocomplete="new-password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    {{form.department.errors}}
+                    <label>Department</label>
+                    <select name="department" id="department">
+                        <option value="">---SELECT DEPARTMENT---</option>
+                        <optgroup label="COLAMRUD">
+                            <option value="aefm">aefm</option>
+                            <option value="aerd">aerd</option>
+                            <option value="agad">agad</option>
+                            <option value="gns">gns</option>
+                        </optgroup>
+                        <optgroup label="COLANIM">
+                            <option value="abg">abg</option>
+                            <option value="ann">ann</option>
+                            <option value="anp">anp</option>
+                            <option value="aph">aph</option>
+                            <option value="prm">prm</option>
+                        </optgroup>
+                        <optgroup label="COLBIOS">
+                            <option value="bch">bch</option>
+                            <option value="mcb">mcb</option>
+                            <option value="pab">pab</option>
+                            <option value="paz">paz</option>
+                        </optgroup>
+                        <optgroup label="COLENG">
+                            <option value="abe">abe</option>
+                            <option value="cve">cve</option>
+                            <option value="ele">ele</option>
+                            <option value="mce">mce</option>
+                            <option value="mte">mte</option>
+                        </optgroup>
+                        <optgroup label="COLERM">
+                            <option value="aqfm">aqfm</option>
+                            <option value="emt">emt</option>
+                            <option value="fwm">fwm</option>
+                            <option value="wma">wma</option>
+                        </optgroup>
+                        <optgroup label="COLMAS">
+                            <option value="bam">bam</option>
+                            <option value="bfn">bfn</option>
+                            <option value="eco">eco</option>
+                            <option value="ets">ets</option>
+                        </optgroup>
+                        <optgroup label="COLPHEC">
+                            <option value="fst">fst</option>
+                            <option value="hsm">hsm</option>
+                            <option value="htm">htm</option>
+                            <option value="nud">nud</option>
+                        </optgroup>
+                        <optgroup label="COLPHYS">
+                            <option value="chm">chm</option>
+                            <option value="csc">csc</option>
+                            <option value="mts">mts</option>
+                            <option value="phs">phs</option>
+                            <option value="sts">sts</option>
+                        </optgroup>
+                        <optgroup label="COLPLANT">
+                            <option value="cpt">cpt</option>
+                            <option value="hrt">hrt</option>
+                            <option value="pbst">pbst</option>
+                            <option value="ppcp">ppcp</option>
+                            <option value="sslm">sslm</option>
+                        </optgroup>
+                        <optgroup label="COLVET">
+                            <option value="vab">vab</option>
+                            <option value="vpr">vpr</option>
+                            <option value="vms">vms</option>
+                            <option value="vmp">vmp</option>
+                            <option value="vpt">vpt</option>
+                            <option value="vpp">vpp</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    {{form.level.errors}}
+                    <label>Level</label>
+                    <select name="level" id="level">
+                        <option value="">---SELECT LEVEL---</option>
+                    </select>
+                </div>
+            </div>
+            {{form.phone.errors}}
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" value="{{student.phone}}" class="form-control" placeholder="e.g 08090000000"
+                    id="phone" name="phone" autocomplete="new-password">
+            </div>
+            <button class="button primary col-12" type="submit">{% trans "Update Profile" %} &raquo;</button>
+        </form>
+    </div>
+    <header class="major mb-1">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            Account
+        </span>
+    </header>
+    <div>
+        <a href="{% url 'account_change_password' %}" class="button mb-2 fit">Change Password</a>
+        <a href="{% url 'account_logout' %}" class="button mb-2 fit">Log out</a>
+    </div>
+</section>
+
+{% endblock content %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'rc-includes/upload_script.js' %}"></script>
+
+<script>
+    let department = document.getElementById("department")
+    let options = department.getElementsByTagName("option")
+    for (option in options) {
+        option = options[option]
+        if (option.value != undefined) {
+            if (option.value.toUpperCase() == "{{student.department.abbreviation}}") {
+                option.selected = true
+            }
+        }
+    }
+
+    let level = document.getElementById("level")
+    let opt = document.createElement("option");
+    opt.value = "{{student.level.level_id}}";
+    opt.textContent = "{{student.level.level_id}}";
+    opt.selected = true
+    level.appendChild(opt);
+</script>
+{% endblock extra_scripts %}
