@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rc_template_tags %}
+{% load i18n %}
+
+{% block extra_head %}
+<style>
+    #user_profile tbody tr {
+        background-color: transparent
+    }
+</style>
+{% endblock extra_head %}
+
+{% block title %}{{student.user.username}}| Resource Center{% endblock title %}
+
+{% block content %}
+<section class="post pt-3">
+    <header class="major mb-3">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            User Profile
+        </span>
+    </header>
+    <div>
+        <table id="user_profile">
+            <tbody>
+                <tr>
+                    <td style="font-weight: 600">Name</td>
+                    <td>{{student.name}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600">Department</td>
+                    <td>{{student.department.name}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600">Knowledge Points</td>
+                    <td>{{student.knowledge_points}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% if student.files.all %}
+    <header class="major mb-3">
+        <span class="date mt-3 mb-0" style="font-weight: 600;">
+            Contributions
+        </span>
+    </header>
+    <div class="table-wrapper">
+        <table class="alt">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Filename</th>
+                    <th><i class="ti-download"></i></th>
+                    <th><i class="ti-thumb-up"></i></th>
+                    <th><i class="ti-thumb-down"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in student.files.all %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><a href="{{object.get_download_url}}">{{object.file.name|clean_title}}</a></td>
+                    <td>{{object.downloads}}</td>
+                    <td>{{object.upvotes}}</td>
+                    <td>{{object.downvotes}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock content %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'rc-includes/upload_script.js' %}"></script>
+
+<script>
+    let department = document.getElementById("department")
+    let options = department.getElementsByTagName("option")
+    for (option in options) {
+        option = options[option]
+        if (option.value != undefined) {
+            if (option.value.toUpperCase() == "{{student.department.abbreviation}}") {
+                option.selected = true
+            }
+        }
+    }
+
+    let level = document.getElementById("level")
+    let opt = document.createElement("option");
+    opt.value = "{{student.level.level_id}}";
+    opt.textContent = "{{student.level.level_id}}";
+    opt.selected = true
+    level.appendChild(opt);
+</script>
+{% endblock extra_scripts %}
