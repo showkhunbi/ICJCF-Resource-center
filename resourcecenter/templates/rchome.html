@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'rc-includes/resource_center_styles.css' %}">
+{% endblock extra_head %}
+
+{% block intro %}
+<!-- Intro -->
+<div id="intro">
+    <h1>Resource<br />
+        Center</h1>
+    <p>A free open Courseware powered by <a href="#">ICJCF</a>
+        for every FUNAAB student</a><br />
+        Explore, Share and Store Academic Resources Easily.</p>
+    <ul class="actions">
+        <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+    </ul>
+</div>
+{% endblock intro %}
+
+{% block content %}
+<div class="rec-categories">
+    <div class="rec-colleges">
+        <h6>College of Agricultural Management and Rural Development Menu</h6>
+        <ul>
+            <li>
+                <div id="aerdd"><a id="aerd" class="scrolly" onclick="getLevel(this)" href="#aerd">Agricultural
+                        Extention & Rural
+                        Development</a></div>
+                <div id="aefmd"><a id="aefm" class="scrolly" onclick="getLevel(this)" href="#aefm">Agricultural
+                        Economics & Farm
+                        Management</a></div>
+                <div id="gnsd"><a id="gns" class="scrolly" onclick="getLevel(this)" href="#gns">Communication & General
+                        Studies</a>
+                </div>
+                <div id="agadd"><a id="agad" class="scrolly" onclick="getLevel(this)" href="#agad">Agricultural
+                        Administration</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="rec-colleges">
+        <h6>College of Animal Sciences and Livestock Production Menu</h6>
+        <ul>
+            <li>
+                <div id="abgd"><a id="abg" class="scrolly" onclick="getLevel(this)" href="#abg">Animal Breeding and
+                        Genetics</a>
+                </div>
+                <div id="annd"><a id="ann" class="scrolly" onclick="getLevel(this)" href="#ann">Animal Nutrition</a>
+                </div>
+                <div id="aphd"><a id="aph" class="scrolly" onclick="getLevel(this)" href="#aph">Animal Production and
+                        Health</a>
+                </div>
+                <div id="prmd"><a id="prm" class="scrolly" onclick="getLevel(this)" href="#prm">Pasture and Range
+                        Management</a>
+                </div>
+                <div id="anpd"><a id="anp" class="scrolly" onclick="getLevel(this)" href="#anp">Animal Physiology</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Biological Sciences Menu</h6>
+        <ul>
+            <li>
+                <div id="bchd"><a id="bch" class="scrolly" onclick="getLevel(this)" href="#bch">Biochemistry</a></div>
+                <div id="mcbd"><a id="mcb" class="scrolly" onclick="getLevel(this)" href="#mcb">Microbiology</a></div>
+                <div id="pabd"><a id="pab" class="scrolly" onclick="getLevel(this)" href="#pab">Pure and Applied
+                        Botany</a></div>
+                <div id="pazd"> <a id="paz" class="scrolly" onclick="getLevel(this)" href="#paz">Pure and Applied
+                        Zoology</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Engineering Menu</h6>
+        <ul>
+            <li>
+                <div id="abed"><a id="abe" class="scrolly" onclick="getLevel(this)" href="#abe">Agricultural
+                        Engineering</a></div>
+                <div id="cved"><a id="cve" class="scrolly" onclick="getLevel(this)" href="#cve">Civil Engineering</a>
+                </div>
+                <div id="eled"><a id="ele" class="scrolly" onclick="getLevel(this)" href="#ele">Electrical/Electronics
+                        Engineering</a></div>
+                <div id="mced"><a id="mce" class="scrolly" onclick="getLevel(this)" href="#mce">Mechanical
+                        Engineering</a></div>
+                <div id="mted"><a id="mte" class="scrolly" onclick="getLevel(this)" href="#mte">Mechatronics
+                        Engineering</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Environmental Resources Management Menu</h6>
+        <ul>
+            <li>
+                <div id="aqfmd"><a id="aqfm" class="scrolly" onclick="getLevel(this)" href="#aqfm">Aquaculture and
+                        Fisheries
+                        Management</a></div>
+                <div id="emtd"><a id="emt" class="scrolly" onclick="getLevel(this)" href="#emt">Environmental Management
+                        and
+                        Toxicology</a></div>
+                <div id="fwmd"><a id="fwm" class="scrolly" onclick="getLevel(this)" href="#fwm">Forestry and Wildlife
+                        Management</a>
+                </div>
+                <div id="wmad"><a id="wma" class="scrolly" onclick="getLevel(this)" href="#wma">Water Resources
+                        Management and
+                        Agrometrology</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Food Science and Human Ecology Menu</h6>
+        <ul>
+            <li>
+                <div id="fstd"><a id="fst" class="scrolly" onclick="getLevel(this)" href="#fst">Food Science and
+                        Technology</a>
+                </div>
+                <div id="hsmd"><a id="hsm" class="scrolly" onclick="getLevel(this)" href="#hsm">Home Sciene and
+                        Management</a></div>
+                <div id="nudd"><a id="nud" class="scrolly" onclick="getLevel(this)" href="#nud">Nutrition and
+                        Dietetics</a></div>
+                <div id="htmd"><a id="htm" class="scrolly" onclick="getLevel(this)" href="#htm">Hospitality and
+                        Tourism</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Management Science Menu</h6>
+        <ul>
+            <li>
+                <div id="bamd"><a id="bam" class="scrolly" onclick="getLevel(this)" href="#bam">Banking and Finance</a>
+                </div>
+                <div id="bfnd"><a id="bfn" class="scrolly" onclick="getLevel(this)" href="#bfn">Business Administration
+                        Management</a></div>
+                <div id="ecod"><a id="eco" class="scrolly" onclick="getLevel(this)" href="#eco">Economics</a></div>
+                <div id="etsd"><a id="ets" class="scrolly" onclick="getLevel(this)" href="#ets">Entrepreneurial
+                        Studies</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Physical Sciences Menu</h6>
+        <ul>
+            <li>
+                <div id="chmd"><a id="chm" class="scrolly" onclick="getLevel(this)" href="#chm">Chemistry</a></div>
+                <div id="cscd"><a id="csc" class="scrolly" onclick="getLevel(this)" href="#csc">Computer Science</a>
+                </div>
+                <div id="mtsd"><a id="mts" class="scrolly" onclick="getLevel(this)" href="#mts">Mathematics</a></div>
+                <div id="phsd"><a id="phs" class="scrolly" onclick="getLevel(this)" href="#phs">Physics</a></div>
+                <div id="stsd"><a id="sts" class="scrolly" onclick="getLevel(this)" href="#sts">Statistics</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Plant Science and Crop Production Menu</h6>
+        <ul>
+            <li>
+                <div id="cptd"><a id="cpt" class="scrolly" onclick="getLevel(this)" href="#cpt">Crop Protection</a>
+                </div>
+                <div id="hrtd"><a id="hrt" class="scrolly" onclick="getLevel(this)" href="#hrt">Horticulture</a></div>
+                <div id="pbstd"><a id="pbst" class="scrolly" onclick="getLevel(this)" href="#pbst">Plant Breeding & Seed
+                        Technology</a></div>
+                <div id="ppcpd"><a id="ppcp" class="scrolly" onclick="getLevel(this)" href="#ppcp">Plant Physiology &
+                        Crop
+                        Production</a></div>
+                <div id="sslmd"><a id="sslm" class="scrolly" onclick="getLevel(this)" href="#sslm">Soil Science & Land
+                        Management</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>College of Veterinary Medicine Menu</h6>
+        <ul>
+            <li>
+                <div id="vbad"><a id="vba" class="scrolly" onclick="getLevel(this)" href="#vba">Veterinary Anatomy</a>
+                </div>
+                <div id="vchd"><a id="vch" class="scrolly" onclick="getLevel(this)" href="#vch">Vet. Public Health &
+                        Repr.</a></div>
+                <div id="vcmd"><a id="vcm" class="scrolly" onclick="getLevel(this)" href="#vcm">Vet. Medicine &
+                        Surgery</a></div>
+                <div id="vpmd"><a id="vpm" class="scrolly" onclick="getLevel(this)" href="#vpm">Vet. Microbic. &
+                        Para.</a></div>
+                <div id="vptd"><a id="vpt" class="scrolly" onclick="getLevel(this)" href="#vpt">Veterinary Pathology</a>
+                </div>
+                <div id="vbbd"><a id="vbb" class="scrolly" onclick="getLevel(this)" href="#vbb">Vet. Physiology &
+                        Pharm.</a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6>Non-Academic Resources Menu</h6>
+        <ul>
+            <li>
+                <div id="spirituald"><a id="spiritual" href="/resourcecenter/download/nonAcademic/1/">Spiritual</a>
+                </div>
+                <div id="motivationald"><a id="motivational"
+                        href="/resourcecenter/download/nonAcademic/2/">Motivational</a></div>
+                <div id="relationshipd"><a id="relationship"
+                        href="/resourcecenter/download/nonAcademic/3/">Relationship</a></div>
+                <div id="businessd"><a id="business" href="/resourcecenter/download/nonAcademic/4/">Business</a>
+                </div>
+                <div id="othersd"><a id="others" href="/resourcecenter/download/nonAcademic/5/">Others</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'rc-includes/resource_center_script.js' %}"></script>
+{% endblock extra_scripts %}
