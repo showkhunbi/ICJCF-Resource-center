@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load rc_template_tags %}
+
+{% block extra_head %}
+<style>
+    .rec-categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .rec-colleges {
+        width: 300px;
+        border: 2px solid #f2f2f2;
+        margin: 10px;
+        padding: 10px;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block title %}Site Statistics{% endblock title %}
+
+{% block content %}
+<div class="rec-categories">
+    <div class="rec-colleges">
+        <h6 class="text-center">Biggest Contributors</h6>
+        <ul>
+            {% for contributor in contributors %}
+            <div><a href="{% url 'resourcecenter:profile' contributor.user.username %}">{{contributor.name}}</a><span
+                    class="float-right"><strong>{{contributor.knowledge_points}}</strong></span></div>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6 class="text-center">Most Recent</h6>
+        <ul>
+            {% for file in most_recent %}
+            <div><a href="{{file.get_download_url}}">{{file.file_name|clean_title}}</a></div>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6 class="text-center">Most Downloaded</h6>
+        <ul>
+            {% for file in most_downloaded %}
+            <div><a href="{{file.get_download_url}}">{{file.file_name|clean_title}}</a><span
+                    class="float-right"><strong>{{file.downloads}}</strong></span></div>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="rec-colleges">
+        <h6 class="text-center">Most Popular</h6>
+        <ul>
+            {% for file in most_popular %}
+            <div><a href="{{file.get_download_url}}">{{file.file_name|clean_title}}</a><span
+                    class="float-right"><strong>{{file.upvotes}}</strong></span></div>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
