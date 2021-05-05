@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Upload Resources{% endblock title %}
+
+{% block content %}
+<div class="">
+    <form class="row" action="" method="post" onsubmit="return validateform()" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-md-6" style="margin: auto;">
+            <div class="col-12 mt-3 mb-3">
+                <input type="file" name="userUpload" multiple id="" required>
+                <p class="pb-0 mb-0" style="font-size: x-small;">Maximum file size 50MB</p>
+            </div>
+            <div class="col-12 mt-3 mb-3">
+                <select name="department" id="department">
+                    <option>---SELECT DEPARTMENT---</option>
+                    <optgroup label="COLAMRUD">
+                        <option value="aefm">aefm</option>
+                        <option value="aerd">aerd</option>
+                        <option value="agad">agad</option>
+                        <option value="gns">gns</option>
+                    </optgroup>
+                    <optgroup label="COLANIM">
+                        <option value="abg">abg</option>
+                        <option value="ann">ann</option>
+                        <option value="anp">anp</option>
+                        <option value="aph">aph</option>
+                        <option value="prm">prm</option>
+                    </optgroup>
+                    <optgroup label="COLBIOS">
+                        <option value="bch">bch</option>
+                        <option value="mcb">mcb</option>
+                        <option value="pab">pab</option>
+                        <option value="paz">paz</option>
+                    </optgroup>
+                    <optgroup label="COLENG">
+                        <option value="abe">abe</option>
+                        <option value="cve">cve</option>
+                        <option value="ele">ele</option>
+                        <option value="mce">mce</option>
+                        <option value="mte">mte</option>
+                    </optgroup>
+                    <optgroup label="COLERM">
+                        <option value="aqfm">aqfm</option>
+                        <option value="emt">emt</option>
+                        <option value="fwm">fwm</option>
+                        <option value="wma">wma</option>
+                    </optgroup>
+                    <optgroup label="COLMAS">
+                        <option value="bam">bam</option>
+                        <option value="bfn">bfn</option>
+                        <option value="eco">eco</option>
+                        <option value="ets">ets</option>
+                    </optgroup>
+                    <optgroup label="COLPHEC">
+                        <option value="fst">fst</option>
+                        <option value="hsm">hsm</option>
+                        <option value="htm">htm</option>
+                        <option value="nud">nud</option>
+                    </optgroup>
+                    <optgroup label="COLPHYS">
+                        <option value="chm">chm</option>
+                        <option value="csc">csc</option>
+                        <option value="mts">mts</option>
+                        <option value="phs">phs</option>
+                        <option value="sts">sts</option>
+                    </optgroup>
+                    <optgroup label="COLPLANT">
+                        <option value="cpt">cpt</option>
+                        <option value="hrt">hrt</option>
+                        <option value="pbst">pbst</option>
+                        <option value="ppcp">ppcp</option>
+                        <option value="sslm">sslm</option>
+                    </optgroup>
+                    <optgroup label="COLVET">
+                        <option value="vab">vab</option>
+                        <option value="vpr">vpr</option>
+                        <option value="vms">vms</option>
+                        <option value="vmp">vmp</option>
+                        <option value="vpt">vpt</option>
+                        <option value="vpp">vpp</option>
+                    </optgroup>
+                    <option value="nonAcademic" style="font-weight: bold;">NON-ACADEMIC</option>
+                </select>
+            </div>
+            <div class="col-12 mt-3 mb-3">
+                <select name="level" id="level">
+                    <option>---SELECT LEVEL---</option>
+                </select>
+            </div>
+            <div class="col-12 mt-3 mb-3">
+                <input type="text" name="courseCode" id="courseCode" placeholder="Course Code">
+            </div>
+            <div class="col-12 mt-3 mb-3">
+                <select name="semester" id="semester">
+                    <option value="1">First Semester</option>
+                    <option value="2">Second Semester</option>
+                    <option value="3">Not Applicable</option>
+                </select>
+            </div>
+            <div class="col-12 mt-3 mb-3">
+                <select name="description" id="description">
+                    <option value="note">Note</option>
+                    <option value="Past Question">Past Question</option>
+                    <option value="Assignment">Assignments</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="col-12 mt-3 mb-3">
+                <input type="text" name="uploadedby" value="{{request.user}}" placeholder="anonymous" disabled></div>
+            <div class="col-12 mt-3">
+                <p class="text-center mb-0" style="font-size: small;">By uploading your file, you agree to our <a
+                        href="{% url 'resourcecenter:terms' %}">terms of
+                        service</a>.
+                </p>
+            </div>
+            <div class="col-12 mb-3" style="display: flex; justify-content: center;">
+                <button class="primary" name="submit" type="submit">UPLOAD</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'rc-includes/upload_script.js' %}"></script>
+{% endblock extra_scripts %}
