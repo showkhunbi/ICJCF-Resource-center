@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+
+{% endblock extra_head %}
+
+{% block title %}Uploads{% endblock title %}
+
+{% block content %}
+<div>
+    <h2>Thank you for contributing to Resource Center</h2>
+    {% for upload in uploads %}
+    <h4>{{upload.file_name}}</h4>
+    <p class="mb-0">Download Link</p>
+    <div class="row ml-2">
+        <input type="text" class="col-7" name="" id="{{upload.slug}}"
+            value="https://{{request.get_host}}{{upload.get_download_url}}">
+        <a class="col-2 ml-2 mr-2 button small" name="{{upload.slug}}" onclick="copyText(this)">Copy</a>
+        <a class="col-2 button small" href="https://{{request.get_host}}{{upload.get_download_url}}">View</a>
+    </div>
+    <p class="mb-0 mt-3">Delete Link</p>
+    <div class="row ml-2 mb-4">
+        <input type="text" class="col-7" name="" id="{{upload.slug}}"
+            value="https://{{ request.get_host}}{{upload.delete_url}}">
+        <a class="col-2 ml-2 mr-2 button small" name="{{upload.slug}}" onclick="copyText(this)">Copy</a>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock content %}
+
+
+{% block extra_scripts %}
+<script>
+    function copyText(self) {
+        let id = self.name
+        var copyText = document.getElementById(id);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert("Download Link Copied to Clipboard");
+    }
+</script>
+{% endblock extra_scripts %}
