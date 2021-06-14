@@ -1,0 +1,172 @@
+{% extends "account/other_pages_base.html" %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="col-lg-6 m-auto">
+  <div class="box">
+    <h2>{% trans "Sign Up" %}</h2>
+
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
+
+    <form class="signup" id="signup_form" method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      <div class="row">
+        {{form.first_name.errors}}
+        <div class="form-group col-6">
+          <label>First name</label>
+          <input type="text" class="form-control" placeholder="First Name" id="id_first_name" name="first_name"
+            autocomplete="new-password">
+        </div>
+        {{form.last_name.errors}}
+        <div class="form-group col-6">
+          <label>Last name</label>
+          <input type="text" class="form-control" placeholder="Last Name" id="id_last_name" name="last_name"
+            autocomplete="new-password">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          {{form.department.errors}}
+          <label>Department</label>
+          <select name="department" id="department">
+            <option value="">---SELECT DEPARTMENT---</option>
+            <optgroup label="COLAMRUD">
+              <option value="aefm">aefm</option>
+              <option value="aerd">aerd</option>
+              <option value="agad">agad</option>
+              <option value="gns">gns</option>
+            </optgroup>
+            <optgroup label="COLANIM">
+              <option value="abg">abg</option>
+              <option value="ann">ann</option>
+              <option value="anp">anp</option>
+              <option value="aph">aph</option>
+              <option value="prm">prm</option>
+            </optgroup>
+            <optgroup label="COLBIOS">
+              <option value="bch">bch</option>
+              <option value="mcb">mcb</option>
+              <option value="pab">pab</option>
+              <option value="paz">paz</option>
+            </optgroup>
+            <optgroup label="COLENG">
+              <option value="abe">abe</option>
+              <option value="cve">cve</option>
+              <option value="ele">ele</option>
+              <option value="mce">mce</option>
+              <option value="mte">mte</option>
+            </optgroup>
+            <optgroup label="COLERM">
+              <option value="aqfm">aqfm</option>
+              <option value="emt">emt</option>
+              <option value="fwm">fwm</option>
+              <option value="wma">wma</option>
+            </optgroup>
+            <optgroup label="COLMAS">
+              <option value="bam">bam</option>
+              <option value="bfn">bfn</option>
+              <option value="eco">eco</option>
+              <option value="ets">ets</option>
+            </optgroup>
+            <optgroup label="COLPHEC">
+              <option value="fst">fst</option>
+              <option value="hsm">hsm</option>
+              <option value="htm">htm</option>
+              <option value="nud">nud</option>
+            </optgroup>
+            <optgroup label="COLPHYS">
+              <option value="chm">chm</option>
+              <option value="csc">csc</option>
+              <option value="mts">mts</option>
+              <option value="phs">phs</option>
+              <option value="sts">sts</option>
+            </optgroup>
+            <optgroup label="COLPLANT">
+              <option value="cpt">cpt</option>
+              <option value="hrt">hrt</option>
+              <option value="pbst">pbst</option>
+              <option value="ppcp">ppcp</option>
+              <option value="sslm">sslm</option>
+            </optgroup>
+            <optgroup label="COLVET">
+              <option value="vab">vab</option>
+              <option value="vpr">vpr</option>
+              <option value="vms">vms</option>
+              <option value="vmp">vmp</option>
+              <option value="vpt">vpt</option>
+              <option value="vpp">vpp</option>
+            </optgroup>
+            <option value="nonAcademic" style="font-weight: bold;">NON-ACADEMIC</option>
+          </select>
+        </div>
+        <div class="form-group col-6">
+          {{form.level.errors}}
+          <label>Level</label>
+          <select name="level" id="level">
+            <option value="">---SELECT LEVEL---</option>
+          </select>
+        </div>
+      </div>
+      {{form.phone.errors}}
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" placeholder="e.g 08090000000" id="phone" name="phone"
+          autocomplete="new-password">
+      </div>
+      {{form.username.errors}}
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="{{form.username.name}}" class="form-control" placeholder="Enter Username"
+          autocomplete="username" maxlength="150" id="username" onkeyup="this.value = this.value.toLowerCase();"
+          required>
+      </div>
+      {{form.email.errors}}
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="{{form.email.name}}" class="form-control" placeholder="Email Address"
+          autocomplete="username" maxlength="150" id="id_email" required>
+      </div>
+      {{form.password.errors}}
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder="Password" id="id_password" name="password"
+          autocomplete="new-password" required>
+      </div>
+      {{form.password2.errors}}
+      <div class="form-group">
+        <label>Repeat Password</label>
+        <input type="password" class="form-control" placeholder="Password" id="id_password2" name="password2"
+          autocomplete="new-password" required>
+      </div>
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="button primary col-12" type="submit">{% trans "Sign Up" %} &raquo;</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'rc-includes/upload_script.js' %}"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#id_password2").keyup(function () {
+      if ($("#id_password2").val() != $("#id_password").val()) {
+        $("#id_password2").addClass("is-invalid")
+      } else {
+        $("#id_password2").removeClass("is-invalid")
+        $("#id_password2").addClass("is-valid")
+      }
+    })
+  })
+</script>
+{% endblock extra_scripts %}
