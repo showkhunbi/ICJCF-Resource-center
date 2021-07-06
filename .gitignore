@@ -5,6 +5,8 @@ __pycache__
 db.sqlite
 media
 mediafiles
+temp
+staticfiles
 
 *.bak
 *.bk
