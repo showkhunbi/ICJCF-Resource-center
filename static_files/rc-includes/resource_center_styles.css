@@ -1,0 +1,320 @@
+/* footer {
+  position: relative;
+  bottom: 0%;
+  width: 100%;
+} */
+
+
+.res-center-img {
+  display: block;
+  margin: 10px auto;
+  height: 40px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  padding: 0;
+}
+
+.container2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rec-h,
+.rec-p {
+  margin: 10px;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.rec-upload_botton {
+  margin: 15px auto 15px auto;
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 13px;
+  padding: auto 20px;
+}
+
+.rec-content {
+  /* background-color: #f2f2f2; */
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.rec-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.rec-colleges {
+  width: 300px;
+  border: 2px solid #f2f2f2;
+  margin: 10px;
+  padding: 10px;
+}
+
+.rec-colleges h6 {
+  font-size: 15px;
+}
+
+.rec-categories ul li a {
+  display: block;
+  list-style: none;
+  font-size: 15px;
+  margin: 3px;
+}
+
+.rec-colleges ul {
+  list-style: none;
+}
+
+.container input,
+.container select {
+  display: block;
+  margin: 20px auto;
+  width: 250px;
+  text-align: center;
+}
+
+.container button,
+.container2 button {
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  padding: auto;
+}
+
+.downloads_page_container {
+  padding: 0;
+}
+
+#downloads_container {
+  background-color: #f2f2f2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+#files {
+  width: 96%;
+  border: 1px solid white;
+  background-color: white;
+  display: flex;
+  box-shadow: 0 2px 5px #666;
+  margin: 0 auto;
+}
+
+#filename h5 {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+#fileimg img {
+  width: 150px;
+  min-height: 150px;
+}
+
+#fileDetails {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 60vw;
+  justify-content: space-between;
+}
+
+#fileDetails #file_clickables,
+#fileDetails #file_unclickables {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0;
+  padding: 0;
+}
+
+#fileDetails #file_clickables p {
+  margin: 0 15px 0 0;
+  padding: 1px 5px;
+  border: 2px dashed #f2f2f2;
+  border-radius: 15px;
+}
+
+#fileDetails #file_unclickables p {
+  margin: 0 15px 0 0;
+  padding: 1px 5px;
+  border: 2px solid #f2f2f2;
+  border-radius: 15px;
+}
+
+#ddiv {
+  display: flex;
+  flex-direction: column;
+}
+
+#ddiv #download-btn {
+  display: block;
+  margin: auto 10px;
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #1DC6DF;
+  text-transform: uppercase;
+  border-radius: 20px;
+  border: 2px solid #1dc5dfb6;
+}
+
+#ddiv #download-btn:hover {
+  background-color: #1dc5dfbe;
+  color: white;
+}
+
+#filedad {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#page-nav{
+  font-family: Raleway;
+}
+#page-nav ul {
+  list-style: none;
+}
+
+#page-nav ul li a,
+#page-nav ul li p {
+  display: inline-block;
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+#spanimg img {
+  height: 20px;
+  width: 20px;
+  display: none;
+}
+
+#p_dept,
+#p_level {
+  text-transform: uppercase;
+}
+
+#message {
+  margin: 0 auto;
+}
+
+#message p {
+  margin: 0;
+}
+
+#courseCode {
+  text-transform: uppercase;
+}
+
+#courseCode::placeholder {
+  text-transform: capitalize;
+}
+
+form #select input:disabled {
+  color: rgb(185, 185, 185);
+}
+
+form #select .hide {
+  color: rgb(185, 185, 185);
+  display: none;
+}
+
+#modify {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div#pagination_nav_links{
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1;
+  text-align: center;
+  margin: 20px auto;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.pagination{
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Roboto',
+  sans-serif;
+  text-align: center;
+  margin: 0;
+  border: 0;
+  vertical-align: baseline;
+  clear: both;
+  display: inline-block;
+  position: relative;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 100%;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.pagination span, .pagination a{
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Roboto',
+  sans-serif;
+  text-align: center;
+  line-height: 100%;
+  text-transform: uppercase;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  color: #aaa;
+  display: block;
+  float: left;
+  font-size: .8rem;
+  font-weight: 400;
+  margin: 2px 5px 2px 0;
+  padding: 9px 12px 8px;
+  text-decoration: none;
+  width: auto;
+}
+
+.pagination .current, .pagination a:hover{
+  background: #aaa;
+  color: #fff;
+}
+
+@media screen and (max-width: 576px) {
+  #fileimg {
+    display: none;
+  }
+
+  #spanimg img {
+    display: inline;
+  }
+
+  #ddiv #download-btn {
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  #filedad {
+    justify-content: stretch;
+  }
+}
